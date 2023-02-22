@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS pawz_db;
+
+CREATE DATABASE pawz_db;
