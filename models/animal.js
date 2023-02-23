@@ -2,7 +2,7 @@ const { Model, DataTypes } = require('sequilize');
 const bcrypt = require ('../config/connection');
 const sequilze = require ('../config/connectiin');
 
-class animal extends Model {
+class Animal extends Model {
     checkPassword(loginPw) {
         return bcrypt.compareSync(loginPw, this.password);
     }
@@ -32,8 +32,8 @@ userInfo.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'animals',
+        modelName: 'animal',
         },
 
 )
-module.exports = animal; 
+module.exports = Animal; 
