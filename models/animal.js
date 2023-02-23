@@ -1,6 +1,6 @@
-const { Model, DataTypes } = require('sequilize');
-const bcrypt = require ('../config/connection');
-const sequilze = require ('../config/connectiin');
+const { Model, DataTypes } = require('sequelize');
+const bcrypt = require('bcrypt');
+const sequelize = require('../config/connection');
 
 class Animal extends Model {
     checkPassword(loginPw) {
@@ -8,16 +8,16 @@ class Animal extends Model {
     }
 }
 
-userInfo.init(
+Animal.init(
     {
         id: {
-            type: DataTypes.INTERGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
-            autoIcrement: true,
+            autoIncrement: true,
             },
         user_id: {
-            type: DataTypes.INTERGER, 
+            type: DataTypes.INTEGER, 
             allowNull: false,
             references: {
                 model: "user",
@@ -28,12 +28,26 @@ userInfo.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        sequilze,
+        pet_type: {
+            type: DataTypes.STRING,
+            allowNull: false,  
+        },
+        pet_photo: {
+            type: DataTypes.TEXT,
+            defaultValue: null,
+        },
+        pet_info: {
+            type: DataTypes.STRING,
+            defaultValue: false,
+        }
+    },
+    {
+        sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'animal',
-        },
+    },
 
 )
 module.exports = Animal; 

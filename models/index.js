@@ -10,4 +10,9 @@ const User = require('./user');
 //})
 
 //Cat.belongsTo()
+
 //export modules
+module.exports = {
+    Animal,
+    User
+}
