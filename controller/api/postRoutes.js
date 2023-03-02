@@ -35,47 +35,24 @@ router.delete('/:id', withAuth, async (req, res) => {
   }
 });
 
-// // update product
-// router.put('/:id', (req, res) => {
-//   // update product data
-//   Post.update(req.body, {
-//     where: {
-//       id: req.params.id,
-//     },
-//   })
-//     .then((post) => {
-//       // find all associated tags from ProductTag
-//       return Post.findOne({ where: { user_id: req.params.id } });
-//     })
-//     .then((postData) => {
-//       // get list of current tag_ids
-//       const postCommentIds = this.post.map(({ user_id }) => user_id);
-//       // create filtered list of new tag_ids
-//       const newPostComment = req.body.user_id
-//         .filter((user_id) => !postCommentIds.includes(user_id))
-//         .map((user_id) => {
-//           return {
-//             post_id: req.params.id,
-//             user_id,
-//           };
-//         });
-//       // figure out which ones to remove
-//       const postCommentToRemove = Comment
-//         .filter(({ user_id }) => !req.body.userIds.includes(user_id))
-//         .map(({ id }) => id);
+// update post
+router.put('/:id', (req, res) => {
+  // update post data
+  Post.update(req.body, {
+    where: {
+      id: req.params.id,
+    },
+  })
+    .catch((err) => {
+      // console.log(err);
+      res.status(400).json(err);
+    });
+});
 
-//       // run both actions
-//       return Promise.all([
-//         Post.destroy({ where: { id: postCommentToRemove } }),
-//         Post.bulkCreate(newPostComment),
-//       ]);
-//     })
-//     .then((updatedPost) => res.json(updatedPost))
-//     .catch((err) => {
-//       // console.log(err);
-//       res.status(400).json(err);
-//     });
-// });
-
+// router.put("/:id", function(req, res){
+//   Aninmal.update(req.body, {where: {
+//     id: req.params.id
+//   }})
+// }).then().catch()
 
 module.exports = router;
