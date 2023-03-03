@@ -37,3 +37,7 @@ header, .project:not(:last-child) {
 .margin-top-25 {
   margin-top: 25px;
 }
+
+input[type="file"] {
+  display: none;
+}
