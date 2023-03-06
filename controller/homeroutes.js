@@ -1,6 +1,8 @@
 const router = require('express').Router();
-const { Post, User, Comment } = require('../models');
+const { Post, User, Comment, Animal } = require('../models');
 const withAuth = require('../utils/auth');
+//const server = require('../server');
+
 
 router.get('/', async (req, res) => {
   try {
@@ -10,6 +12,10 @@ router.get('/', async (req, res) => {
         {
           model: User,
           attributes: ['name'],
+        },
+        {
+          model: Animal,
+          attributes: ['id', 'name', 'pet_type', 'pet_info', 'user_id']
         },
         {
           model: Comment,
@@ -76,7 +82,7 @@ router.get('/profile', withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Post, model: Comment }],
+      include: [{ model: Post, model: Comment, model: Animal }],
     });
 
     const user = userData.get({ plain: true });

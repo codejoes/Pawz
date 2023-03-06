@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Animal } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
     try {

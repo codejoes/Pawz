@@ -2,6 +2,23 @@
     <h2>{{title}}</h2>
     <p>{{text}}</p>
     <p>Created by {{user.name}} on {{format_date date_created}}</p>
+    <div class="row mt-4">
+    <div class="col-md-6" id="post-update-card">
+      <h3>Update your post!</h3>
+      <form class="form update-post-form">
+        <div class="form-group">
+          <label for="updated-title">Post title:</label>
+          <input class="form-input" type="text" id="updated-title" name="updated-title" />
+        </div>
+        <div class="form-group">
+          <label for="updated-text">Post text:</label>
+          <textarea class="form-input" id="updated-text" name="updated-text"></textarea>
+        </div>
+        <div class="form-group">
+          <button id="submitEditBtn" type="submit" class="btn btn-primary" data-id="{{id}}">Update</button>
+        </div>
+      </form>
+    </div>
     {{#if comments.length}}
       <div class="">
         <h3>Current Comments:</h3>
@@ -16,5 +33,18 @@
         {{/each}}
       </div>
     {{/if}}
+    <div id="post-comment">
+      <form class="form">
+        <label for="comment">Comment on this post:</label>
+        <input class="form-input" type="text" id="comment" name="comment"/>
+      </form>
+      <div>
+        <button id="postCommentBtn" type="submit" class="btn btn-primary">
+          Comment
+        </button>
+      </div>
+    </div>
   </div>
+
+  <script src="/js/edit.js"></script>
   
