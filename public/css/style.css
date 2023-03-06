@@ -41,3 +41,9 @@ header, .project:not(:last-child) {
 input[type="file"] {
   display: none;
 }
+
+img{
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}

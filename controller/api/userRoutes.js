@@ -40,12 +40,29 @@ router.post('/login', async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      
       res.json({ user: userData, message: 'You are now logged in!' });
     });
 
   } catch (err) {
     res.status(400).json(err);
+  }
+});
+
+router.put('/:id', async (req, res) => {
+  try {
+    const updatedUser = await User.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    });
+    console.log(updatedUser);
+    if (!updatedUser) {
+      res.status(404).json({ message: 'No user found with this id!' });
+      return;
+    }
+    res.status(200).json(updatedUser);
+  } catch(err) {
+    res.status(500).json(err)
   }
 });
 

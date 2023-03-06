@@ -44,7 +44,7 @@ console.log(cloudinary.config());
 
 
 //Post route that captures file
-app.post("/api/upload", (req, res, next) => {
+app.post("/api/uploads", (req, res, next) => {
 
   const form = new formidable.IncomingForm();
   //Grabbing file path
@@ -63,7 +63,7 @@ app.post("/api/upload", (req, res, next) => {
       uploadImage(newPath);
       //Delete file locally
       deletefile(newPath);
-      return res.send("Successfully uploaded");
+      res.redirect(`/profile`);
     });
   });
 });
@@ -81,8 +81,15 @@ const uploadImage = async (imagePath) => {
   try {
     // Upload the image
     const result = await cloudinary.uploader.upload(imagePath, options);
+    const id = sessionId;
+    
     console.log(result);
     console.log(result.public_id);
+    // User.update({'user_photo': `${result.url}`}, {
+    //   where: {
+    //     id: id,
+    //   }
+    // })
   } catch (error) {
     console.error(error);
   }

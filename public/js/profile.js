@@ -3,7 +3,6 @@ const newFormHandler = async (event) => {
   
     const title = document.querySelector('#project-name').value.trim();
     const text = document.querySelector('#project-desc').value.trim();
-  
     if (title && text) {
       const response = await fetch(`/api/posts`, {
         method: 'POST',
@@ -18,9 +17,9 @@ const newFormHandler = async (event) => {
       } else {
         alert('Failed to create post');
       }
-    }
-  };
-  
+    } 
+};
+
   const delButtonHandler = async (event) => {
     if (event.target.hasAttribute('data-id')) {
       const id = event.target.getAttribute('data-id');
@@ -43,4 +42,4 @@ const newFormHandler = async (event) => {
   
   document
     .querySelector('.project-list')
-    .addEventListener('click', delButtonHandler);
+    .addEventListener('click', delButtonHandler); 
