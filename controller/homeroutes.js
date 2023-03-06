@@ -14,10 +14,6 @@ router.get('/', async (req, res) => {
           attributes: ['name'],
         },
         {
-          model: Animal,
-          attributes: ['id', 'name', 'pet_type', 'pet_info', 'user_id']
-        },
-        {
           model: Comment,
           attributes: ['id', 'text', 'user_id', 'post_id'],
           include: [
