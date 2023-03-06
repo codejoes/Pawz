@@ -1,1 +1,4 @@
 # Pawz
+Description: Pawz is an interactive and deployable app that allows Pet owners to create social media accounts on our platform for their lovable pets! Using a platform UI found in similar apps such as Facebook, Myspace, Instagram etc. Pawz allows user to interact with people on the platform on behalf of their pets. The main functionality of Pawz allows creation of account, posting photos of animals, comments and post about anything users want for their animals.
+Technologies: The technologies used are Cloudinary, handlebars, MySQL, NodeJS, ExpressJS, Sequelize, bcrypt, dotenv to make Pawz a functional and deployable application.
+Screenshot and Video: Below are screenshots and a video of the functionality of the app, and how it is useable on the consumer side for creating, uploading, commenting, updating and posting information on their personalized account. Also, a link to the deployed site found on Heroku.
