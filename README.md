@@ -52,4 +52,4 @@ Below are screenshots, a video of the functionality of the app, and GitHub repos
 [GitHub Repo](https://github.com/codejoes/Pawz)
 
 ![Screenshot of Website](./images/App%20Screenshot.png)
-[Heroku Link]()
+[Heroku Link](https://tranquil-wave-97157.herokuapp.com/)
