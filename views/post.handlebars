@@ -1,39 +1,81 @@
-<div class="text-center">
-    <h2>{{title}}</h2>
-    <p>{{text}}</p>
-    <p>Created by {{user.name}} on {{format_date date_created}}</p>
-    <div class="row mt-4">
-    <div class="col-md-6" id="post-update-card">
-      <h3>Update your post!</h3>
-      <form class="form update-post-form">
-        <div class="form-group">
-          <label for="updated-title">Post title:</label>
-          <input class="form-input" type="text" id="updated-title" name="updated-title" />
+<div class="ag-format-container">
+  <div class="ag-courses_box">
+    <div class="ag-courses_item">
+      <a href="#" class="ag-courses-item_link">
+        <div class="ag-courses-item_bg"></div>
+
+        <div class="ag-courses-item_title">
+          <h2>{{title}}</h2>
+          <p>{{text}}</p>
         </div>
-        <div class="form-group">
-          <label for="updated-text">Post text:</label>
-          <textarea class="form-input" id="updated-text" name="updated-text"></textarea>
+
+
+        <div class="ag-courses-item_date-box">
+          Created by {{user.name}}
+          <span class="ag-courses-item_date">
+             on {{format_date date_created}}
+          </span>
         </div>
-        <div class="form-group">
-          <button id="submitEditBtn" type="submit" class="btn btn-primary" data-id="{{id}}">Update</button>
-        </div>
-      </form>
+      </a>
     </div>
-    {{#if comments.length}}
-      <div class="">
+  </div>
+</div>
+
+<div class="card text-center" id="post-update-card">
+    <h3>Update your post!</h3>
+    <form class="form update-post-form">
+      <div class="form-group">
+        <label for="updated-title">Post title:</label>
+        <input class="form-input" type="text" id="updated-title" name="updated-title" />
+      </div>
+      <div class="form-group">
+        <label for="updated-text">Post text:</label>
+        <textarea class="form-input" id="updated-text" name="updated-text"></textarea>
+      </div>
+      <div class="form-group">
+        <button id="submitEditBtn" type="submit" class="btn btn-primary" data-id="{{id}}">Update</button>
+      </div>
+    </form>
+</div>
+
+  {{!-- <div class="card text-center">
+      <h2>{{title}}</h2>
+      <p>{{text}}</p>
+      <p>Created by {{user.name}} on {{format_date date_created}}</p>
+  </div>
+  <div class="card text-center" id="post-update-card">
+    <h3>Update your post!</h3>
+    <form class="form update-post-form">
+      <div class="form-group">
+        <label for="updated-title">Post title:</label>
+        <input class="form-input" type="text" id="updated-title" name="updated-title" />
+      </div>
+      <div class="form-group">
+        <label for="updated-text">Post text:</label>
+        <textarea class="form-input" id="updated-text" name="updated-text"></textarea>
+      </div>
+      <div class="form-group">
+        <button id="submitEditBtn" type="submit" class="btn btn-primary" data-id="{{id}}">Update</button>
+      </div>
+    </form>
+  </div> --}}
+  
+
+    {{!-- {{#if comments.length}}
+      <div class="comment-list card">
         <h3>Current Comments:</h3>
   
         {{#each comments as |comment|}}
         <div class=''>
           <div class=''>
             <p>{{comment.text}}</p>
-            <button class="btn btn-sm btn-danger" data-id="{{comment.id}}">DELETE</button>
+            <button id="deleteComment" class="btn btn-sm btn-danger" data-id="{{comment.id}}">DELETE</button>
           </div>
         </div>
         {{/each}}
       </div>
     {{/if}}
-    <div id="post-comment">
+    <div class="post-comment" id="post-comment">
       <form class="form">
         <label for="comment">Comment on this post:</label>
         <input class="form-input" type="text" id="comment" name="comment"/>
@@ -43,8 +85,9 @@
           Comment
         </button>
       </div>
-    </div>
-  </div>
+    </div> --}}
+
 
   <script src="/js/edit.js"></script>
+  <script src="/js/profile.js"></script>
   
