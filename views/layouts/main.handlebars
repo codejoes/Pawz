@@ -10,8 +10,25 @@
 </head>
 
 <body>
-  <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
+    <div class="flex-column justify-space-around">
+      <div class="hero-nav">
+      <div class="hero-nav__inner">
+          <h1><a href="/">Pawz!</a></h1>
+          {{!-- <div class="hero-nav__button">
+              <a href="/" class="btn"></a>
+          </div> --}}
+          <nav>
+            <!-- Conditionally render login or logout links -->
+            {{#if logged_in}}
+            <a href="/profile">profile</a> |
+            <button class="no-button" id="logout">logout</button>
+            {{else}}
+            <a href="/login">login</a>
+            {{/if}}
+          </nav>
+      </div>
+    </div>
+    {{!-- <header class="display-flex justify-space-between align-center p-2">
       <h1>
         <span role="img" aria-label="money">🐕</span>
         <a href="/">Pawz!</a>
@@ -25,7 +42,7 @@
         <a href="/login">login</a>
         {{/if}}
       </nav>
-    </header>
+    </header> --}}
     <main class="container container-fluid mt-5">
       <!-- Render the sub layout -->
       {{{ body }}}
@@ -46,10 +63,12 @@
     </footer>
   </div>
 
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <!-- Render script for logged in users only -->
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}}
+  <script src="/js/header.js"></script>
 </body>
 
 </html>
