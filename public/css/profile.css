@@ -7,7 +7,7 @@
   align-items: center;
   height: 100vh;
   font-family: 'Baloo Paaji 2', cursive;
-  z-index: 0;
+  z-index: 1;
 }
 
 .card {
