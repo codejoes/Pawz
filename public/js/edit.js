@@ -1,14 +1,12 @@
 
 
-const updatePostHandler = async (event) => {
+  const updatePostHandler = async (event) => {
     event.preventDefault();
   
     const id = window.location.toString().split('/')[
       window.location.toString().split('/').length - 1
     ];
-  
-    console.log('1=====================================');
-  
+    
     const title = document.querySelector('#updated-title').value.trim();
     const text = document.querySelector('#updated-text').value.trim();
   
@@ -28,62 +26,45 @@ const updatePostHandler = async (event) => {
     }
   };
 
-  const commentHandler = async (event) => {
-    event.preventDefault();
-  
-    const id = window.location.toString().split('/')[
-      window.location.toString().split('/').length - 1
-    ];
-  
-    console.log(id);
-  
-    const text = document.querySelector('#comment').value.trim();  
-    // const post_id = id;
+  // const commentHandler = async (event) => {
+  //   event.preventDefault();
 
-    const response = await fetch (`/api/comments/`, {
-      method: 'POST',
-      body: JSON.stringify( { text } ),
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    });
+  //   const text = document.querySelector('#comment').value.trim();  
+  //   console.log(text);
+
+  //   const response = await fetch (`/api/comments/`, {
+  //     method: 'POST',
+  //     body: JSON.stringify( { text } ),
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     }
+  //   });
+
+  //   console.log(response);
    
-    if (response.ok) {
-      location.reload();
-    } else {
-      alert('Failed to post comment');
-    }
-  };
+  //   if (response.ok) {
+  //     location.reload();
+  //   } else {
+  //     alert('Failed to post comment');
+  //   }
+  // };
 
 
-  const animalHandler = async (event) => {
-    event.preventDefault();
+  // const deleteCommentHandler = async (event) => {
+  //   if (event.target.hasAttribute('data-id')) {
+  //     const id = event.target.getAttribute('data-id');
   
-    // const id = window.location.toString().split('/')[
-    //   window.location.toString().split('/').length - 1
-    // ];
+  //     const response = await fetch(`/api/comments/${id}`, {
+  //       method: 'DELETE',
+  //     });
   
-    // console.log(id);
-  
-    const animalName = document.querySelector('#animal-name').value.trim();
-    const animalType = document.querySelector('#animal-type').value.trim();
-    const animalText = document.querySelector('#animal-text').value.trim();
-    // const post_id = id;
-
-    const response = await fetch (`/api/animals/`, {
-      method: 'POST',
-      body: JSON.stringify( { animalName, animalType, animalText } ),
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    });
-   
-    if (response.ok) {
-      location.reload();
-    } else {
-      alert('Failed to add animal');
-    }
-  };
+  //     if (response.ok) {
+  //       document.location.replace('/profile');
+  //     } else {
+  //       alert('Failed to delete comment');
+  //     }
+  //   }
+  // };
 
 // const updateUserhandler = async (event) => {
 //     event.preventDefault();
@@ -115,14 +96,15 @@ const updatePostHandler = async (event) => {
 //     .querySelector('#upload-photo')
 //     .addEventListener('click', (event) => { updateUserhandler(event) });
 
-  document
-    .querySelector('#submitEditBtn')
-    .addEventListener('click', (event) => { updatePostHandler(event); });
+document
+  .querySelector('#submitEditBtn')
+  .addEventListener('click', (event) => { updatePostHandler(event); });
 
-  document
-    .querySelector('#postCommentBtn')
-    .addEventListener('click', (event) => { commentHandler(event) });
+// document
+//   .querySelector('#postCommentBtn')
+//   .addEventListener('click', (event) => { commentHandler(event) });
 
-  document
-    .querySelector('#addAnimalBtn')
-    .addEventListener('click', (event) => { animalHandler(event) });
+
+// document
+//   .querySelector('.comment-list')
+//   .addEventListener('click', (event) => { deleteCommentHandler(event) });

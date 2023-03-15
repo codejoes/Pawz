@@ -18,6 +18,10 @@ router.post('/', withAuth, async (req, res) => {
       user_id: req.session.user_id,
     });
 
+    req.session.save(() => {
+      req.session.post_id = newPost.id;
+    })
+
     res.status(200).json(newPost);
   } catch (err) {
     res.status(400).json(err);
@@ -43,7 +47,7 @@ router.delete('/:id', withAuth, async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
   console.log(req.body);
   try {
     const updatedPost = await Post.update( req.body, {

@@ -1,15 +1,38 @@
 {{#each posts as |post| }}
-<div class="row mb-4 project">
-  <div class="col-md-5">
-    <h2>
-      <a href="/post/{{post.id}}">{{post.title}}</a>
-    </h2>
-    <p>Created by {{post.user.name}} on {{format_date post.date_created}}</p>
-  </div>
-  <div class="col-md-7">
-    <p>
-      {{post.text}}
-    </p>
+<div class="ag-format-container">
+  <div class="ag-courses_box">
+    <div class="ag-courses_item">
+      <a href="/post/{{post.id}}" class="ag-courses-item_link">
+        <div class="ag-courses-item_bg"></div>
+
+        <div class="ag-courses-item_title">
+          {{post.title}}
+        </div>
+
+        <div class="ag-courses-item_date-box">
+          Created by {{post.user.name}}
+          <span class="ag-courses-item_date">
+             on {{format_date post.date_created}}
+          </span>
+        </div>
+      </a>
+    </div>
   </div>
 </div>
+{{!-- <div class="row mb-4 project ag-format-container">
+  <div class="ag-courses-box">
+    <div class="ag-courses_item">
+      <h2>
+        <a href="/post/{{post.id}}" class="ag-courses-item_link">{{post.title}}</a>
+      </h2>
+      <p class="ag-courses-item_date-box">Created by {{post.user.name}} on {{format_date post.date_created}}</p>
+      <p>
+        {{post.text}}
+      </p>
+    </div>
+    
+
+    
+  </div>
+</div> --}}
 {{/each}}

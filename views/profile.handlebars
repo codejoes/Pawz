@@ -1,28 +1,47 @@
-<div class="row">
-  <div class="col-auto">
-    <h2>Welcome, {{name}}!</h2>
-  </div>
-</div>
+<link rel="stylesheet" href="/css/profile.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div id="animal-info">
-  <h3>My best friend: </h3>
-  {{#if animals.length}}
-    {{#each animals as |animal|}}
-      <div>
-        <p><strong>Name: </strong>{{animal.name}}</p>
-        <p><strong>Species/Breed: </strong>{{animal.pet_type}}</p>
-        <p><strong>All about my pet: </strong>{{animal.pet_info}}</p>
+<div class="container">
+  <div class="card">
+    <img src="{{user_photo}}" alt="Person" class="card__image">
+    <p class="card__name">{{name}}</p>
+    <div class="grid-container">
+
+      <div class="grid-child-posts">
+        156 Posts
       </div>
-    {{/each}}
-  {{/if}}
-</div>
 
-<div id="animal-pic">
-  <img src="{{user_photo}}" alt="">
-</div>
+      <div class="grid-child-followers">
+        1012 Likes
+      </div>
 
-<div class="row mt-4">
-  <div class="col-md-6">
+    </div>
+    <ul class="social-icons">
+      <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+      <li><a href="#"><i class="fa fa-codepen"></i></a></li>
+    </ul>
+    <button class="btn draw-border">Follow</button>
+    <button class="btn draw-border">Message</button>
+
+  </div>
+  <div class="card">
+    <div id="animal-info">
+    <h3>My best friend: </h3>
+    {{#if animals.length}}
+      {{#each animals as |animal|}}
+        <div>
+          <p><strong>Name: </strong>{{animal.name}}</p>
+          <p><strong>Species/Breed: </strong>{{animal.pet_type}}</p>
+          <p><strong>All about my pet: </strong>{{animal.pet_info}}</p>
+        </div>
+      {{/each}}
+    {{/if}}
+    </div>
+  </div>
+
+  <div class="card">
     <h3>What's going on in your pets life?</h3>
     <form class="form new-project-form">
       <div class="form-group">
@@ -40,7 +59,7 @@
   </div>
 
   
-  <div class="col-md-6">
+  <div class="card">
     <h3>Lets get to know your pet</h3>
     <form class="form" id="new-animal-form">
       <div class="form-group">
@@ -63,32 +82,35 @@
     
   </div>
 
-  <label for="upload picture"><h3>Upload a picture of your pet!</h3></label>
-  <form id="upload-picture" action="/api/uploads" enctype="multipart/form-data" method="post">
-    <div>
-      <label for="custom-input" class="btn btn-link margin-top-25">File<input id="custom-input" type="file" name="profilePic"/></label>
-    </div>
-    <button id="upload-photo" type="submit" value="Upload" class="btn btn-link margin-top-25">Upload</button>
-  </form>
-
-  {{#if posts.length}}
-  <div class="col-md-6 project-list">
-    <h3>Current Posts:</h3>
-
-    {{#each posts as |post|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/post/{{post.id}}">{{post.name}}</a></h4>
+  <div class="card">
+    <label for="upload picture"><h3>Upload a picture of your pet!</h3></label>
+    <form id="upload-picture" action="/api/uploads" enctype="multipart/form-data" method="post">
+      <div>
+        <label for="custom-input" class="btn btn-link margin-top-25">File<input id="custom-input" type="file" name="profilePic"/></label>
       </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
-        {{!-- <button class="btn btn-sm btn-primary" data-id="{{post.id}}">UPDATE</button> --}}
-      </div>
-    </div>
-    {{/each}}
+      <button id="upload-photo" type="submit" value="Upload" class="btn btn-link margin-top-25 margin-bottom-100">Upload</button>
+    </form>
   </div>
-  {{/if}}
+
+  <div class="card">
+    {{#if posts.length}}
+    <div class="col-md-6 post-list margin-bottom-100">
+      <h3>Current Posts:</h3>
+
+      {{#each posts as |post|}}
+        <div class="row mb-2">
+          <div class="col-md-8">
+            <h4><a href="/post/{{post.id}}">{{post.title}}</a></h4>
+          </div>
+          <div class="col-md-4">
+            <button id="deletePost" class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
+            {{!-- <button class="btn btn-sm btn-primary" data-id="{{post.id}}">UPDATE</button> --}}
+          </div>
+        </div>
+      {{/each}}
+    </div>
+    {{/if}}
+  </div>
 </div>
 
-<script src="./js/profile.js"></script>
-<script src="./js/edit.js"></script>
+<script src="/js/profile.js"></script>

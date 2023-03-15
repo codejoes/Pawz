@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post, User, Comment, Animal } = require('../models');
+const { Post, User, Animal } = require('../models');
 const withAuth = require('../utils/auth');
 //const server = require('../server');
 
@@ -13,20 +13,16 @@ router.get('/', async (req, res) => {
           model: User,
           attributes: ['name'],
         },
-        {
-          model: Animal,
-          attributes: ['id', 'name', 'pet_type', 'pet_info', 'user_id']
-        },
-        {
-          model: Comment,
-          attributes: ['id', 'text', 'user_id', 'post_id'],
-          include: [
-            {
-              model: User,
-              attributes: ['name'],
-            },
-          ]
-        }
+        // {
+        //   model: Comment,
+        //   attributes: ['id', 'text', 'user_id', 'post_id'],
+        //   include: [
+        //     {
+        //       model: User,
+        //       attributes: ['name'],
+        //     },
+        //   ]
+        // }
       ],
     });
 
@@ -44,6 +40,23 @@ router.get('/', async (req, res) => {
   }
 });
 
+// router.get('/comment/:id', async (req, res) => {
+//   try {
+//     const commentData = await Comment.findByPk(req.params.id, {
+//       include: { model: User, attributes: ['name'] }
+//     });
+
+//     const comment = commentData.get({ plain: true });
+
+//     res.render('comment', {
+//       ...comment,
+//       logged_in: req.session.logged_in
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// })
+
 router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
@@ -52,16 +65,16 @@ router.get('/post/:id', async (req, res) => {
           model: User,
           attributes: ['name'],
         },
-        {
-          model: Comment,
-          attributes: ['id', 'text', 'user_id', 'post_id'],
-            include: [
-              {
-                model: User,
-                attributes: ['name'],
-              },
-            ]
-        }
+        // {
+        //   model: Comment,
+        //   attributes: ['id', 'text', 'user_id', 'post_id'],
+        //     include: [
+        //       {
+        //         model: User,
+        //         attributes: ['name'],
+        //       },
+        //     ]
+        // }
       ],
     });
 
@@ -82,10 +95,29 @@ router.get('/profile', withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Post, model: Comment, model: Animal }],
+      include: [
+        { 
+          model: Post,
+          attributes: ['id', 'title', 'text', 'user_id'],
+            include: [
+              {
+                model: User,
+                attributes: ['name'],
+              }
+            ]
+        },
+        // { 
+        //   model: Comment,
+        //   attributes: ['id', 'text', 'user_id', 'post_id'],
+        // },
+        { 
+          model: Animal
+        }
+      ],
     });
 
     const user = userData.get({ plain: true });
+    // console.log(user);
 
     res.render('profile', {
       ...user,
